@@ -1,19 +1,9 @@
 begin
-  if defined?(RUBY_ENGINE) and (RUBY_ENGINE == 'rbx' or RUBY_ENGINE == 'jruby')
-    task :flay do
-      $stderr.puts 'rbx and jruby do have inconsitend flay results, fix and remove guard'
-    end
-  else
+  if RUBY_VERSION == '1.8.7' 
     require 'flay'
     require 'yaml'
 
-
     config      = YAML.load_file(File.expand_path('../../../config/flay.yml', __FILE__)).freeze
-
-    key         = RUBY_VERSION.split('.')[0..1].join('.')
-
-    config      = config.fetch(key) { raise "flay configuration for ruby: #{key} not found" }
-
     threshold   = config.fetch('threshold').to_i
     total_score = config.fetch('total_score').to_f
     files       = Flay.expand_dirs_to_files(config.fetch('path', 'lib'))
@@ -45,9 +35,13 @@ begin
         raise "#{flay.masses.size} chunks of code have a duplicate mass > #{threshold}"
       end
     end
+  else
+    task :flay do
+      $stderr.puts 'Flay has inconsistend results accros ruby implementations. It is only enabled on 1.8.7, fix and remove guard'
+    end
   end
 rescue LoadError
   task :flay do
-    $stderr.puts 'Flay is not available. In order to run flay, you must: gem install flay'
+    abort 'Flay is not available. In order to run flay, you must: gem install flay'
   end
 end
