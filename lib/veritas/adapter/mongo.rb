@@ -13,3 +13,5 @@ module Veritas
     end
   end
 end
+
+require 'veritas/adapter/mongo/gateway'
