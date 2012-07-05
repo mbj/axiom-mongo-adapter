@@ -36,4 +36,8 @@ module Veritas
   end
 end
 
+require 'veritas/adapter/mongo/operations'
+require 'veritas/adapter/mongo/visitor'
+require 'veritas/adapter/mongo/function'
+require 'veritas/adapter/mongo/literal'
 require 'veritas/adapter/mongo/gateway'
