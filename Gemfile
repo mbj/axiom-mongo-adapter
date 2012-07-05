@@ -13,6 +13,10 @@ group :development do
   gem 'yard',    '~> 0.8.1'
 end
 
+platforms :mri_18, :mri_19 do
+  gem 'bson_ext'
+end
+
 platform :jruby do
   group :jruby do
     gem 'jruby-openssl', '~> 0.7.4'

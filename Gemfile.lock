@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/dkubb/veritas
-  revision: 10c0656f21a3296b21246c03a1218794f16dfde0
+  revision: e1cc41b0ecf51399318eee68c4cf7f18d48934c6
   specs:
     veritas (0.0.7)
       backports (~> 2.6.1)
@@ -35,7 +35,7 @@ GEM
     ParseTree (3.0.8)
       RubyInline (>= 3.7.0)
       sexp_processor (>= 3.0.0)
-    RubyInline (3.11.2)
+    RubyInline (3.11.3)
       ZenTest (~> 4.3)
     Saikuro (1.1.0)
     ZenTest (4.8.1)
@@ -46,6 +46,8 @@ GEM
     awesome_print (1.0.2)
     backports (2.6.1)
     bson (1.6.4)
+    bson_ext (1.6.4)
+      bson (~> 1.6.4)
     chronic (0.3.0)
     churn (0.0.13)
       chronic (>= 0.2.3)
@@ -145,6 +147,7 @@ PLATFORMS
 
 DEPENDENCIES
   arrayfields (~> 4.7.4)
+  bson_ext
   fattr (~> 2.2.0)
   flay (~> 1.4.2)
   flog (~> 2.5.1)
