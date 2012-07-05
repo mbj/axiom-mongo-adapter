@@ -23,4 +23,15 @@ describe Adapter::Mongo::Visitor,'#query' do
 
     it { should == { :firstname => 'John' } }
   end
+
+  context 'when restriction is present twice' do
+    let(:relation) do 
+      base_relation.restrict(:firstname => 'John').restrict(:lastname => 'Doe')
+    end
+
+    it 'should raise error' do
+      expect { subject }.to 
+        raise_error(Adapter::Mongo::UnsupportedAlgebraError,"No support for visiting: #{described_class} more than once")
+    end
+  end
 end

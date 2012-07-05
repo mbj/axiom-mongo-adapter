@@ -3,6 +3,59 @@ module Veritas
     class Mongo
       # Component to check for valid bson literals
       module Literal
+        # Maximum number an signed 32bit integer can take
+        INT_32_MAX = (2**31 - 1).freeze
+
+        # Minimum number an signed 32bit integer can take
+        INT_32_MIN = (-2**31).freeze
+
+        INT_32_RANGE = (INT_32_MIN..INT_32_MAX)
+
+        # Check if object is a positive integer
+        #
+        # @param [Object] object
+        #
+        # @return [Fixnum] 
+        #
+        # @api private
+        #
+        def self.integer(object)
+          unless object.kind_of?(Fixnum) and INT_32_RANGE.include?(object)
+            raise ArgumentError, "Not a valid int32: #{object.inspect}"
+          end
+
+          object
+        end
+
+        # Check if value is postive
+        #
+        # @param [Object] value
+        #
+        # @return [#>=]
+        #
+        # @api private
+        #
+        def self.positive(value)
+          unless value.kind_of?(Numeric) and value >= 0
+            raise ArgumentError, "Not a positive value: #{value.inspect}"
+          end
+
+          value
+        end
+        private_class_method :positive
+
+        # Chef if value is a positive integer
+        #
+        # @param [Object] value
+        #
+        # @return [Fixnum]
+        #
+        # @api private
+        #
+        def self.positive_integer(value)
+          positive(integer(value))
+        end
+
         # Return attribute name as key
         #
         # @param [Attribute] attribute

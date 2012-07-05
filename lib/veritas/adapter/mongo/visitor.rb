@@ -37,6 +37,17 @@ module Veritas
         #
         attr_reader :sort
 
+        # Return limit
+        #
+        # @return [Fixnum]
+        #   then relation is limited
+        #
+        # @return [nil]
+        #   then relation is NOT limited
+        #
+        # @api private
+        attr_reader :limit
+
       private
 
         # Initialize visitor
@@ -48,13 +59,15 @@ module Veritas
         # @api private
         #
         def initialize(relation)
-          @query,@sort    = {},[]
           dispatch(relation)
+          @query ||= {}
+          @sort  ||= []
         end
 
         TABLE = Operations.new(
           Veritas::Relation::Base              => :visit_base_relation,
           Veritas::Relation::Operation::Order  => :visit_order_operation,
+          Veritas::Relation::Operation::Limit  => :visit_limit_operation,
           Veritas::Algebra::Restriction        => :visit_restriction
         )
 
@@ -97,8 +110,28 @@ module Veritas
         # @api private
         #
         def visit_restriction(restriction)
-          @query = Function.function(restriction.predicate)
-          dispatch(restriction.operand)
+          assign_first_time(:@query,restriction) do
+            Function.function(restriction.predicate)
+          end
+        end
+
+        # Assign component for the first time
+        #
+        # @param [Symbol] ivar_name
+        # @param [Veritas::Relation::Operation] operation
+        #
+        # @return [self]
+        #
+        # @api private
+        #
+        def assign_first_time(ivar_name,operation)
+          if instance_variable_get(ivar_name)
+            raise UnsupportedAlgebraError,"No support for visiting #{operation.class} more than once"
+          end
+
+          instance_variable_set(ivar_name,yield)
+
+          dispatch(operation.operand)
 
           self
         end
@@ -112,10 +145,23 @@ module Veritas
         # @api private
         #
         def visit_order_operation(order)
-          @sort = Literal.sort(order.directions)
-          dispatch(order.operand)
+          assign_first_time(:@sort,order) do
+            Literal.sort(order.directions)
+          end
+        end
 
-          self
+        # Vist a limit operation
+        #
+        # @param [Relation::Operation::Limit] limit
+        #
+        # @return [self]
+        #
+        # @api private
+        #
+        def visit_limit_operation(limit)
+          assign_first_time(:@limit,limit) do
+            Literal.positive_integer(limit.limit)
+          end
         end
       end
     end
