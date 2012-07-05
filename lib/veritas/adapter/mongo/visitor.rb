@@ -21,6 +21,14 @@ module Veritas
         #
         attr_reader :collection_name
 
+        # Return fields to select
+        #
+        # @return [Array<Symbol>]
+        #
+        # @api private
+        #
+        attr_reader :fields
+
       private
 
         # Initialize visitor
@@ -66,6 +74,7 @@ module Veritas
         #
         def visit_base_relation(base_relation)
           @collection_name = base_relation.name
+          @fields          = base_relation.header.map(&:name)
 
           self
         end
