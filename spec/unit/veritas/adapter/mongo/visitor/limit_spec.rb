@@ -10,6 +10,7 @@ describe Adapter::Mongo::Visitor,'#limit' do
   end
 
   let(:ordered) { base_relation.sort_by { |r| [r.id.asc,r.name.asc] } }
+  let(:factory) { Relation::Operation::Limit                          }
 
   context 'with base relation' do
     let(:relation) { base_relation }

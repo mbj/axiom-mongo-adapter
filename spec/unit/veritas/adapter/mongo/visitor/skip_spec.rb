@@ -9,6 +9,8 @@ describe Adapter::Mongo::Visitor,'#skip' do
     Relation::Base.new('name',[[:id,Integer],[:name,String]])
   end
 
+  let(:factory) { Relation::Operation::Offset }
+
   let(:ordered) { base_relation.sort_by { |r| [r.id.asc,r.name.asc] } }
 
   context 'with base relation' do

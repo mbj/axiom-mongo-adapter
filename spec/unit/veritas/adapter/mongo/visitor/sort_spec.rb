@@ -6,6 +6,8 @@ describe Adapter::Mongo::Visitor,'#sort' do
   let(:object)        { described_class.new(relation)                             }
   let(:base_relation) { Relation::Base.new('name',[[:id,Integer],[:name,String]]) }
 
+  let(:factory)       { Relation::Operation::Order }
+
   context 'when visiting base relation' do
     let(:relation) { base_relation }
 

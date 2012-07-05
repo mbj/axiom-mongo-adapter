@@ -12,6 +12,8 @@ describe Adapter::Mongo::Visitor,'#query' do
     )
   end
 
+  let(:factory) { Algebra::Restriction }
+
   context 'with base relation' do
     let(:relation) { base_relation }
 
@@ -29,9 +31,6 @@ describe Adapter::Mongo::Visitor,'#query' do
       base_relation.restrict(:firstname => 'John').restrict(:lastname => 'Doe')
     end
 
-    it 'should raise error' do
-      expect { subject }.to 
-        raise_error(Adapter::Mongo::UnsupportedAlgebraError,"No support for visiting: #{described_class} more than once")
-    end
+    it_should_behave_like 'a method visiting an unsupported component more than once'
   end
 end
