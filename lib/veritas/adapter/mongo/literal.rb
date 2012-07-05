@@ -15,6 +15,20 @@ module Veritas
           key(attribute.name)
         end
 
+        # Return sort literal
+        #
+        # @param [Relation::Operation::Order::DirectionSet] directions
+        #
+        # @return [Array]
+        #
+        # @api private
+        #
+        def self.sort(directions)
+          directions.map do |direction|
+            [direction.name,direction(direction)]
+          end
+        end
+
         # Check value is a valid bson primitive
         #
         # @param [Object] value
@@ -34,6 +48,24 @@ module Veritas
 
           value
         end
+
+        # Return sort direction
+        #
+        # @param [Relation::Operation::Order::Direction] direction
+        #
+        # @return [Mongo::ASCENDING]
+        # @return [Mongo::DESCENDING]
+        #
+        # @api private
+        #
+        def self.direction(direction)
+          if direction.is_a?(Relation::Operation::Order::Descending)
+            ::Mongo::DESCENDING
+          else
+            ::Mongo::ASCENDING
+          end
+        end
+        private_class_method :direction
 
         # Check value is a valid bson key
         #

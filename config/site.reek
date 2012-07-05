@@ -9,7 +9,8 @@ UncommunicativeParameterName:
   - !ruby/regexp /[A-Z]/
 LargeClass:
   max_methods: 10
-  exclude: []
+  exclude:
+  - "Veritas::Adapter::Mongo::Visitor" # 4 ivars
   enabled: true
   max_instance_variables: 3
 UncommunicativeMethodName:

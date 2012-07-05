@@ -29,6 +29,14 @@ module Veritas
         #
         attr_reader :fields
 
+        # Return sort directions
+        #
+        # @return [Array<Symbol>]
+        #
+        # @api private
+        #
+        attr_reader :sort
+
       private
 
         # Initialize visitor
@@ -40,13 +48,14 @@ module Veritas
         # @api private
         #
         def initialize(relation)
-          @query    = {}
+          @query,@sort    = {},[]
           dispatch(relation)
         end
 
         TABLE = Operations.new(
-          Veritas::Relation::Base => :visit_base_relation,
-          Veritas::Algebra::Restriction => :visit_restriction
+          Veritas::Relation::Base              => :visit_base_relation,
+          Veritas::Relation::Operation::Order  => :visit_order_operation,
+          Veritas::Algebra::Restriction        => :visit_restriction
         )
 
         # Dispatch relation
@@ -90,6 +99,21 @@ module Veritas
         def visit_restriction(restriction)
           @query = Function.function(restriction.predicate)
           dispatch(restriction.operand)
+
+          self
+        end
+
+        # Vist an order operation
+        #
+        # @param [Relation::Operation::Order] order
+        #
+        # @return [self]
+        #
+        # @api private
+        #
+        def visit_order_operation(order)
+          @sort = Literal.sort(order.directions)
+          dispatch(order.operand)
 
           self
         end
