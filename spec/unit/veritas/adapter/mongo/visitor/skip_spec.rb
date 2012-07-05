@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Adapter::Mongo::Visitor,'#limit' do
-  subject { object.limit }
+describe Adapter::Mongo::Visitor,'#skip' do
+  subject { object.skip }
 
   let(:object) { described_class.new(relation) }
 
@@ -18,13 +18,13 @@ describe Adapter::Mongo::Visitor,'#limit' do
   end
 
   context 'with limit operation' do
-    let(:relation) { ordered.take(10) }
+    let(:relation) { ordered.drop(10) }
 
     it { should be(10) }
   end
 
   context 'with nested limit operation' do
-    let(:relation) { ordered.take(10).take(10) }
+    let(:relation) { ordered.drop(10).drop(10) }
 
     it_should_behave_like 'a method visiting an unsupported component more than once'
   end

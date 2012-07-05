@@ -31,9 +31,6 @@ describe Adapter::Mongo::Visitor,'#sort' do
       end
     end
 
-    it 'should raise error' do
-      expect { subject }.to 
-        raise_error(Adapter::Mongo::UnsupportedAlgebraError,"No support for visiting: #{described_class} more than once")
-    end
+    it_should_behave_like 'a method visiting an unsupported component more than once'
   end
 end

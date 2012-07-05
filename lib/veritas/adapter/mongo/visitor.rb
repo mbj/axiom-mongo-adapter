@@ -40,13 +40,26 @@ module Veritas
         # Return limit
         #
         # @return [Fixnum]
-        #   then relation is limited
+        #   returns limit when relation is limited
         #
         # @return [nil]
-        #   then relation is NOT limited
+        #   returns nil when relation is NOT limited
         #
         # @api private
+        #
         attr_reader :limit
+
+        # Return skip
+        #
+        # @return [Fixnum]
+        #   returns offset when relation is offseted
+        #
+        # @return [nil]
+        #   returns nil when relation is NOT offseted
+        #
+        # @api private
+        #
+        attr_reader :skip
 
       private
 
@@ -68,6 +81,7 @@ module Veritas
           Veritas::Relation::Base              => :visit_base_relation,
           Veritas::Relation::Operation::Order  => :visit_order_operation,
           Veritas::Relation::Operation::Limit  => :visit_limit_operation,
+          Veritas::Relation::Operation::Offset => :visit_offset_operation,
           Veritas::Algebra::Restriction        => :visit_restriction
         )
 
@@ -161,6 +175,20 @@ module Veritas
         def visit_limit_operation(limit)
           assign_first_time(:@limit,limit) do
             Literal.positive_integer(limit.limit)
+          end
+        end
+
+        # Vist an offset operation
+        #
+        # @param [Relation::Operation::Offset] offset
+        #
+        # @return [self]
+        #
+        # @api private
+        #
+        def visit_offset_operation(offset)
+          assign_first_time(:@skip,offset) do
+            Literal.positive_integer(offset.offset)
           end
         end
       end
