@@ -5,9 +5,7 @@ describe Adapter::Mongo::Visitor,'#limit' do
 
   let(:object) { described_class.new(relation) }
 
-  let(:base_relation) do
-    Relation::Base.new('name',[[:id,Integer],[:name,String]])
-  end
+  let(:base_relation) { BASE_RELATION }
 
   let(:ordered) { base_relation.sort_by { |r| [r.id.asc,r.name.asc] } }
   let(:factory) { Relation::Operation::Limit                          }

@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Adapter::Mongo::Visitor,'#sort' do
   subject { object.sort }
 
-  let(:object)        { described_class.new(relation)                             }
-  let(:base_relation) { Relation::Base.new('name',[[:id,Integer],[:name,String]]) }
-
-  let(:factory)       { Relation::Operation::Order }
+  let(:object)        { described_class.new(relation) }
+  let(:base_relation) { BASE_RELATION                 }
+  let(:factory)       { Relation::Operation::Order    }
 
   context 'when visiting base relation' do
     let(:relation) { base_relation }

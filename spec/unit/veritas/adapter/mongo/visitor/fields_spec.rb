@@ -5,8 +5,8 @@ describe Adapter::Mongo::Visitor,'#fields' do
 
   let(:object) { described_class.new(relation) }
 
-  let(:header)        { [[:id,Integer],[:name,String]] }
-  let(:base_relation) { Relation::Base.new('name',header) }
+  let(:base_relation) { BASE_RELATION }
+  let(:header)        { base_relation.header }
 
   context 'on a base relation' do
     let(:relation) { base_relation }
@@ -22,7 +22,7 @@ describe Adapter::Mongo::Visitor,'#fields' do
     let(:relation) { base_relation.restrict(:id => 1) }
 
     it 'should return fields from header' do
-      should == header.map(&:first)
+      should == header.map(&:name)
     end
 
     it_should_behave_like 'an idempotent method'
