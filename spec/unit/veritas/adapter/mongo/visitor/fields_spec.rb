@@ -12,7 +12,7 @@ describe Adapter::Mongo::Visitor,'#fields' do
     let(:relation) { base_relation }
 
     it 'should return fields from header' do
-      should == header.map(&:first)
+      should == header.map(&:name)
     end
 
     it_should_behave_like 'an idempotent method'
