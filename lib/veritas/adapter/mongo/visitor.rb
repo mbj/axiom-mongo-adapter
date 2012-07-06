@@ -29,37 +29,20 @@ module Veritas
         #
         attr_reader :fields
 
-        # Return sort directions
+        # Return mongo query options
         #
-        # @return [Array<Symbol>]
-        #
-        # @api private
-        #
-        attr_reader :sort
-
-        # Return limit
-        #
-        # @return [Fixnum]
-        #   returns limit when relation is limited
-        #
-        # @return [nil]
-        #   returns nil when relation is NOT limited
+        # @return [Hash]
         #
         # @api private
         #
-        attr_reader :limit
-
-        # Return skip
-        #
-        # @return [Fixnum]
-        #   returns offset when relation is offseted
-        #
-        # @return [nil]
-        #   returns nil when relation is NOT offseted
-        #
-        # @api private
-        #
-        attr_reader :skip
+        def options
+          {
+            :skip   => @skip,
+            :limit  => @limit,
+            :sort   => @sort,
+            :fields => fields
+          }
+        end
 
       private
 
@@ -191,6 +174,8 @@ module Veritas
             Literal.positive_integer(offset.offset)
           end
         end
+
+        memoize :options
       end
     end
   end
