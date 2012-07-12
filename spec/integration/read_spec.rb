@@ -2,17 +2,17 @@ require 'spec_helper'
 require 'logger'
 
 describe Adapter::Mongo, 'read' do
-  let(:uri)           { ENV.fetch('MONGO_URI', 'mongodb://localhost')                          }
-  let(:logger)        { Logger.new($stdout)                                                   }
+  let(:uri)           { ENV.fetch('MONGO_URI', '127.0.0.1:27017')                              }
+  let(:logger)        { Logger.new($stdout)                                                    }
           
-  let(:adapter)       { Adapter::Mongo.new(database)                                          }
+  let(:adapter)       { Adapter::Mongo.new(database)                                           }
   let(:base_relation) { Relation::Base.new('people', [[:firstname,String],[:lastname,String]]) }
 
-  let(:connection)    { Mongo::Connection.new(uri)                                            }
+  let(:connection)    { Mongo::Connection.new(uri)                                             }
                                                                                   
   let(:relation)      { Adapter::Mongo::Gateway.new(adapter, base_relation)                    }
-  let(:database)      { connection.db('test')                                                 }
-  let(:collection)    { database.collection('people')                                         }
+  let(:database)      { connection.db('test')                                                  }
+  let(:collection)    { database.collection('people')                                          }
 
   before :all do
     collection.insert(:firstname => 'John', :lastname => 'Doe')
