@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'logger'
 
 describe Adapter::Mongo, 'read' do
-  let(:uri)           { ENV.fetch('MONGO_URI', '127.0.0.1:27017')                              }
+  let(:uri)           { ENV.fetch('MONGO_URI', '127.0.0.1')                                    }
   let(:logger)        { Logger.new($stdout)                                                    }
           
   let(:adapter)       { Adapter::Mongo.new(database)                                           }
