@@ -10,9 +10,9 @@ module Veritas
 
         # Poor man forwardable for now.
         (DECORATED_CLASS.public_instance_methods(false).map(&:to_s) - %w[ materialize one ]).each do |method|
-          class_eval(<<-RUBY,__FILE__,__LINE__+1)
-            def #{method}(*args,&block)
-              relation.public_send(:#{method},*args,&block)
+          class_eval(<<-RUBY, __FILE__,__LINE__+1)
+            def #{method}(*args, &block)
+              relation.public_send(:#{method}, *args,&block)
             end
           RUBY
         end
@@ -32,7 +32,7 @@ module Veritas
           Relation::Operation::Offset,
           Relation::Operation::Limit,
           Algebra::Restriction
-        ].each_with_object({}) do |operation,map|
+        ].each_with_object({}) do |operation, map|
           operation::Methods.public_instance_methods(false).each do |method|
             method = method.to_sym
             next if method == :last
@@ -41,13 +41,13 @@ module Veritas
         end
 
         MAP.each_key do |method|
-          class_eval(<<-RUBY,__FILE__,__LINE__+1)
-            def #{method}(*args,&block)
+          class_eval(<<-RUBY, __FILE__,__LINE__+1)
+            def #{method}(*args, &block)
               unless supported?(:#{method})
                 return super
               end
 
-              response = @relation.send(:#{method},*args,&block)
+              response = @relation.send(:#{method}, *args,&block)
               self.class.new(adapter, response, @operations + [response.class])
             end
           RUBY

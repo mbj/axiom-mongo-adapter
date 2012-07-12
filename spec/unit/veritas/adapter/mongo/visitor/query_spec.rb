@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Adapter::Mongo::Visitor,'#query' do
+describe Adapter::Mongo::Visitor, '#query' do
   subject { object.query }
 
   let(:object) { described_class.new(relation) }
@@ -22,7 +22,7 @@ describe Adapter::Mongo::Visitor,'#query' do
   end
 
   context 'when restriction is present twice' do
-    let(:relation) do 
+    let(:relation) do
       base_relation.restrict(:name => 'John').restrict(:id => 1)
     end
 

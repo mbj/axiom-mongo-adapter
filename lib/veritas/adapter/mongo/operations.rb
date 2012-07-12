@@ -16,7 +16,7 @@ module Veritas
         def lookup(visitable)
           klass = visitable.class
           call = @map.fetch(klass) do
-            raise UnsupportedAlgebraError,"No support for #{klass}"
+            raise UnsupportedAlgebraError, "No support for #{klass}"
           end
 
           [*call] + [visitable]
@@ -26,7 +26,7 @@ module Veritas
 
         # Initialize operations
         #
-        # @param [Hash<Class,Array>] map
+        # @param [Hash<Class, Array>] map
         #
         # @return [undefined]
         #

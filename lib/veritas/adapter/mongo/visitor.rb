@@ -107,7 +107,7 @@ module Veritas
         # @api private
         #
         def visit_restriction(restriction)
-          assign_first_time(:@query,restriction) do
+          assign_first_time(:@query, restriction) do
             Function.function(restriction.predicate)
           end
         end
@@ -121,12 +121,12 @@ module Veritas
         #
         # @api private
         #
-        def assign_first_time(ivar_name,operation)
+        def assign_first_time(ivar_name, operation)
           if instance_variable_get(ivar_name)
-            raise UnsupportedAlgebraError,"No support for visiting #{operation.class} more than once"
+            raise UnsupportedAlgebraError, "No support for visiting #{operation.class} more than once"
           end
 
-          instance_variable_set(ivar_name,yield)
+          instance_variable_set(ivar_name, yield)
 
           dispatch(operation.operand)
 
@@ -142,7 +142,7 @@ module Veritas
         # @api private
         #
         def visit_order_operation(order)
-          assign_first_time(:@sort,order) do
+          assign_first_time(:@sort, order) do
             Literal.sort(order.directions)
           end
         end
@@ -156,7 +156,7 @@ module Veritas
         # @api private
         #
         def visit_limit_operation(limit)
-          assign_first_time(:@limit,limit) do
+          assign_first_time(:@limit, limit) do
             Literal.positive_integer(limit.limit)
           end
         end
@@ -170,7 +170,7 @@ module Veritas
         # @api private
         #
         def visit_offset_operation(offset)
-          assign_first_time(:@skip,offset) do
+          assign_first_time(:@skip, offset) do
             Literal.positive_integer(offset.offset)
           end
         end

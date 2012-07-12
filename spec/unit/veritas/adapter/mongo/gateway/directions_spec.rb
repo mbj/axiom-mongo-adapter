@@ -5,5 +5,5 @@ describe Adapter::Mongo::Gateway, '#directions' do
 
   let(:operation) { :directions }
 
-  it_should_behave_like 'a method forwarded to relation' 
+  it_should_behave_like 'a method forwarded to relation'
 end

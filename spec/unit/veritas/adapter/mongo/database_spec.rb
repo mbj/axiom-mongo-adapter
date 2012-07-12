@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Adapter::Mongo,'#database' do
+describe Adapter::Mongo, '#database' do
   subject { object.database }
 
   let(:object) { described_class.new(database) }

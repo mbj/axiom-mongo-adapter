@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe Adapter::Mongo::Query,'#each' do
+describe Adapter::Mongo::Query, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
-  let(:object)          { described_class.new(database,relation)      }
+  let(:object)          { described_class.new(database, relation)      }
   let(:relation)        { mock('Relation')                            }
   let(:collection)      { mock('Collection')                          }
   let(:database)        { mock('Database', :collection => collection) }
@@ -13,7 +13,7 @@ describe Adapter::Mongo::Query,'#each' do
   let(:query)           { mock('Query')                               }
   let(:skip)            { mock('Skip')                                }
   let(:limit)           { mock('Limit')                               }
-  let(:fields)          { [:id,:name]                                 }
+  let(:fields)          { [:id, :name]                                 }
 
   let(:documents)       { [{'id'=> 1, 'name' => 'Alice'}, { 'id' => 2, 'name' => 'Bob' }] }
 
@@ -23,7 +23,7 @@ describe Adapter::Mongo::Query,'#each' do
   end
 
   let(:visitor) do
-    mock('Visitor', 
+    mock('Visitor',
       :collection_name => collection_name,
       :query           => query,
       :options         => options,
@@ -48,13 +48,13 @@ describe Adapter::Mongo::Query,'#each' do
   end
 
   it 'should query the collection correctly' do
-    collection.should_receive(:find).with(query,options).and_return(documents)
+    collection.should_receive(:find).with(query, options).and_return(documents)
     subject
   end
 
   it 'yields each tuple' do
     expect { subject }.to change { yields.dup }.
       from([]).
-      to([ [1,'Alice'], [2,'Bob'] ])
+      to([ [1, 'Alice'], [2,'Bob'] ])
   end
 end

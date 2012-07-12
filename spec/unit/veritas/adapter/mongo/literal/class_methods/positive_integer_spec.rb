@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Veritas::Adapter::Mongo::Literal,'#positive_integer' do
+describe Veritas::Adapter::Mongo::Literal, '#positive_integer' do
   subject { object.positive_integer(value) }
 
   let(:object) { Veritas::Adapter::Mongo::Literal }
@@ -11,7 +11,7 @@ describe Veritas::Adapter::Mongo::Literal,'#positive_integer' do
     it_should_behave_like 'an idempotent method'
 
     it 'should return value' do
-      should equal(value) 
+      should equal(value)
     end
   end
 
@@ -21,7 +21,7 @@ describe Veritas::Adapter::Mongo::Literal,'#positive_integer' do
     it_should_behave_like 'an idempotent method'
 
     it 'should return value' do
-      should equal(value) 
+      should equal(value)
     end
   end
 
@@ -29,7 +29,7 @@ describe Veritas::Adapter::Mongo::Literal,'#positive_integer' do
     let(:value) { -10 }
 
     it 'should raise error' do
-      expect { subject }.to raise_error(ArgumentError,'Not a positive value: -10')
+      expect { subject }.to raise_error(ArgumentError, 'Not a positive value: -10')
     end
   end
 

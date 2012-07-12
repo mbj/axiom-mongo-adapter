@@ -13,8 +13,8 @@ module Veritas
           Veritas::Function::Predicate::GreaterThanOrEqualTo => :greater_than_or_equal_to_predicate,
           Veritas::Function::Predicate::LessThan             => :less_than_predicate,
           Veritas::Function::Predicate::LessThanOrEqualTo    => :less_than_or_equal_to_predicate,
-          Veritas::Function::Connective::Disjunction         => :disjunction, 
-          Veritas::Function::Connective::Conjunction         => :conjunction, 
+          Veritas::Function::Connective::Disjunction         => :disjunction,
+          Veritas::Function::Connective::Conjunction         => :conjunction,
           Veritas::Function::Connective::Negation            => :negation
         )
 
@@ -39,7 +39,7 @@ module Veritas
         # @api private
         #
         def self.disjunction(disjunction)
-          create_connective(disjunction,:$or)
+          create_connective(disjunction, :$or)
         end
         private_class_method :disjunction
 
@@ -52,7 +52,7 @@ module Veritas
         # @api private
         #
         def self.conjunction(conjunction)
-          create_connective(conjunction,:$and)
+          create_connective(conjunction, :$and)
         end
         private_class_method :conjunction
 
@@ -65,8 +65,8 @@ module Veritas
         #
         # @api private
         #
-        def self.create_connective(connective,operator)
-          { operator => [function(connective.left),function(connective.right)] }
+        def self.create_connective(connective, operator)
+          { operator => [function(connective.left), function(connective.right)] }
         end
         private_class_method :create_connective
 
@@ -92,7 +92,7 @@ module Veritas
         # @api private
         #
         def self.inequality_predicate(predicate)
-          predicate(predicate,:$ne)
+          predicate(predicate, :$ne)
         end
         private_class_method :inequality_predicate
 
@@ -105,7 +105,7 @@ module Veritas
         # @api private
         #
         def self.inclusion_predicate(predicate)
-          predicate(predicate,:$in)
+          predicate(predicate, :$in)
         end
         private_class_method :inclusion_predicate
 
@@ -118,7 +118,7 @@ module Veritas
         # @api private
         #
         def self.exclusion_predicate(predicate)
-          predicate(predicate,:$nin)
+          predicate(predicate, :$nin)
         end
         private_class_method :exclusion_predicate
 
@@ -131,7 +131,7 @@ module Veritas
         # @api private
         #
         def self.less_than_predicate(predicate)
-          predicate(predicate,:$lt)
+          predicate(predicate, :$lt)
         end
         private_class_method :less_than_predicate
 
@@ -144,7 +144,7 @@ module Veritas
         # @api private
         #
         def self.less_than_or_equal_to_predicate(predicate)
-          predicate(predicate,:$lte)
+          predicate(predicate, :$lte)
         end
         private_class_method :less_than_or_equal_to_predicate
 
@@ -157,7 +157,7 @@ module Veritas
         # @api private
         #
         def self.greater_than_predicate(predicate)
-          predicate(predicate,:$gt)
+          predicate(predicate, :$gt)
         end
         private_class_method :greater_than_predicate
 
@@ -170,7 +170,7 @@ module Veritas
         # @api private
         #
         def self.greater_than_or_equal_to_predicate(predicate)
-          predicate(predicate,:$gte)
+          predicate(predicate, :$gte)
         end
         private_class_method :greater_than_or_equal_to_predicate
 
@@ -196,7 +196,7 @@ module Veritas
         #
         # @api private
         #
-        def self.predicate(predicate,operator)
+        def self.predicate(predicate, operator)
           { Literal.attribute_name(predicate.left) => { operator => Literal.primitive(predicate.right) } }
         end
         private_class_method :predicate

@@ -36,7 +36,7 @@ module Veritas
         #
         # @api private
         #
-        def initialize(database,relation)
+        def initialize(database, relation)
           @visitor    = Visitor.new(relation)
           @collection = database.collection(@visitor.collection_name)
         end
@@ -58,7 +58,7 @@ module Veritas
         # @api private
         #
         def documents
-          @collection.find(@visitor.query,@visitor.options)
+          @collection.find(@visitor.query, @visitor.options)
         end
 
         # Create array tuple from document
@@ -68,7 +68,7 @@ module Veritas
         # @api private
         #
         def tuple(document)
-          fields.each_with_object([]) do |field,tuple|
+          fields.each_with_object([]) do |field, tuple|
             tuple << document[field]
           end
         end

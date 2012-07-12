@@ -1,7 +1,7 @@
 shared_examples_for 'a method forwarded to relation' do
-  subject { object.public_send(operation,*arguments,&block) }
+  subject { object.public_send(operation, *arguments,&block) }
 
-  let(:object)   { described_class.new(adapter,relation) }
+  let(:object)   { described_class.new(adapter, relation) }
   let(:relation) { mock('Relation', operation => response) }
   let(:response) { mock('Response') }
   let(:adapter)  { mock('Adapter') }
@@ -17,7 +17,7 @@ shared_examples_for 'a method forwarded to relation' do
   end
 
   it 'should foward the message to wrapped relation' do
-    relation.should_receive(operation).with(*arguments,&block).and_return(response)
+    relation.should_receive(operation).with(*arguments, &block).and_return(response)
     should be(response)
   end
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Adapter::Mongo::Visitor,'#fields' do
+describe Adapter::Mongo::Visitor, '#fields' do
   subject { object.fields }
 
   let(:object) { described_class.new(relation) }

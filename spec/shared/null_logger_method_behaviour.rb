@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 shared_examples_for 'a null logger method' do
-  subject { object.public_send(method,message) }
+  subject { object.public_send(method, message) }
 
   let(:object)  { Adapter::Mongo::NullLogger }
   let(:message) { mock('Message')                    }

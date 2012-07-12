@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Veritas::Adapter::Mongo::Literal,'#integer' do
+describe Veritas::Adapter::Mongo::Literal, '#integer' do
   subject { object.integer(value) }
 
   let(:object) { Veritas::Adapter::Mongo::Literal }
@@ -11,7 +11,7 @@ describe Veritas::Adapter::Mongo::Literal,'#integer' do
     it_should_behave_like 'an idempotent method'
 
     it 'should return value' do
-      should equal(value) 
+      should equal(value)
     end
   end
 

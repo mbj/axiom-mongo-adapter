@@ -15,7 +15,7 @@ module Veritas
         #
         # @param [Object] object
         #
-        # @return [Fixnum] 
+        # @return [Fixnum]
         #
         # @api private
         #
@@ -78,7 +78,7 @@ module Veritas
         #
         def self.sort(directions)
           directions.map do |direction|
-            [direction.name,direction(direction)]
+            [direction.name, direction(direction)]
           end
         end
 
@@ -92,11 +92,11 @@ module Veritas
         #
         def self.primitive(value)
           case value
-          when Integer,String,Float
+          when Integer, String,Float
           when Array
             value.each { |element| primitive(element) }
           else
-            raise ArgumentError,"Not a supported primitive #{value.inspect}"
+            raise ArgumentError, "Not a supported primitive #{value.inspect}"
           end
 
           value
@@ -130,9 +130,9 @@ module Veritas
         #
         def self.key(value)
           case value
-          when Symbol,String
+          when Symbol, String
           else
-            raise ArgumentError,"Not a supported key #{value.inspect}"
+            raise ArgumentError, "Not a supported key #{value.inspect}"
           end
 
           value

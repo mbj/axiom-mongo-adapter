@@ -11,7 +11,7 @@ module Veritas
       include Immutable
 
       # Return mongo connection
-      # 
+      #
       # @return [::Mongo::DB]
       #
       # @api private
@@ -31,10 +31,10 @@ module Veritas
       #
       # @api private
       #
-      def read(relation,&block)
+      def read(relation, &block)
         return to_enum(__method__, relation) unless block_given?
 
-        Query.new(@database,relation).each(&block)
+        Query.new(@database, relation).each(&block)
 
         self
       end

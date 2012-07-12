@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Adapter::Mongo::Literal,'#primitive' do
+describe Adapter::Mongo::Literal, '#primitive' do
   subject { object.primitive(primitive) }
 
   let(:object)    { Adapter::Mongo::Literal }
@@ -38,7 +38,7 @@ describe Adapter::Mongo::Literal,'#primitive' do
     let(:primitive) { [invalid_element] }
 
     it 'should raise error' do
-      expect { subject }.to raise_error(ArgumentError,"Not a supported primitive #{invalid_element.inspect}")
+      expect { subject }.to raise_error(ArgumentError, "Not a supported primitive #{invalid_element.inspect}")
     end
   end
 
@@ -47,7 +47,7 @@ describe Adapter::Mongo::Literal,'#primitive' do
     let(:primitive) { Object.new }
 
     it 'should raise error' do
-      expect { subject }.to raise_error(ArgumentError,"Not a supported primitive #{primitive.inspect}")
+      expect { subject }.to raise_error(ArgumentError, "Not a supported primitive #{primitive.inspect}")
     end
   end
 end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Adapter::Mongo::Literal,'#attribute_name' do
+describe Adapter::Mongo::Literal, '#attribute_name' do
   subject { object.attribute_name(attribute) }
 
   let(:object)    { Adapter::Mongo::Literal }
@@ -17,7 +17,7 @@ describe Adapter::Mongo::Literal,'#attribute_name' do
     let(:name) { Object.new }
 
     it 'should raise error' do
-      expect { subject }.to raise_error(ArgumentError,"Not a supported key #{name.inspect}")
+      expect { subject }.to raise_error(ArgumentError, "Not a supported key #{name.inspect}")
     end
   end
 end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Adapter::Mongo::Operations,'.new' do
+describe Adapter::Mongo::Operations, '.new' do
   subject { object.new(map) }
 
   let(:object) { described_class }

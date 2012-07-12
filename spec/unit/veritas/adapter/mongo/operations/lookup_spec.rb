@@ -17,7 +17,7 @@ describe Adapter::Mongo::Operations, '#lookup' do
       let(:value) { 1 }
 
       it 'should return correct call' do
-        should == [:foo,value]
+        should == [:foo, value]
       end
     end
 
@@ -25,7 +25,7 @@ describe Adapter::Mongo::Operations, '#lookup' do
       let(:value) { 1.0 }
 
       it 'should return correct call' do
-        should == [:foo,value]
+        should == [:foo, value]
       end
     end
   end
@@ -34,7 +34,7 @@ describe Adapter::Mongo::Operations, '#lookup' do
     let(:value) { // }
 
     it 'should raise error' do
-      expect { subject }.to raise_error(Adapter::Mongo::UnsupportedAlgebraError,'No support for Regexp' )
+      expect { subject }.to raise_error(Adapter::Mongo::UnsupportedAlgebraError, 'No support for Regexp' )
     end
   end
 end
