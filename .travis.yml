@@ -9,7 +9,7 @@ rvm:
   - jruby-18mode
   # - jruby-19mode Blacklisted for behaviour that does not occur under veritas-elasticsearch adapter http://travis-ci.org/#!/mbj/veritas-mongo-adapter/jobs/1779426
   - rbx-18mode
-  - rbx-19mode
+  # - rbx-19mode Blacklisted for 3rd party issue with the mongo gem http://travis-ci.org/#!/mbj/veritas-mongo-adapter/jobs/1847314
 notifications:
   email:
     - mbj@seonic.net
