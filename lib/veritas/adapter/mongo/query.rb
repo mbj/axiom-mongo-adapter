@@ -48,7 +48,7 @@ module Veritas
         # @api private
         #
         def fields
-          @visitor.fields.map { |field| field.to_s }
+          @visitor.fields.map(&:to_s)
         end
 
         # Return results enumerator
