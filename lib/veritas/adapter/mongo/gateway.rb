@@ -35,8 +35,7 @@ module Veritas
         ].each_with_object({}) do |operation, map|
           operation::Methods.public_instance_methods(false).each do |method|
             method = method.to_sym
-            next if method == :last
-            map[method.to_sym]=operation
+            map[method.to_sym]=operation if method != :last
           end
         end
 
