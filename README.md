@@ -3,7 +3,7 @@ veritas-mongo-adapter
 
 [![Build Status](https://secure.travis-ci.org/mbj/veritas-mongo-adapter.png?branch=master)](http://travis-ci.org/mbj/veritas-mongo-adapter)
 [![Dependency Status](https://gemnasium.com/mbj/veritas-mongo-adapter.png)](https://gemnasium.com/mbj/veritas-mongo-adapter)
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/mbj/veritas-mongo-adapter)
+[![Code Climate](https://codeclimate.com/github/mbj/veritas-mongo-adapter.png)](https://codeclimate.com/github/mbj/veritas-mongo-adapter)
 
 This is an [mongodb](http://mongodb.org) adapter for [veritas](http://github.com/dkubb/veritas).
 
