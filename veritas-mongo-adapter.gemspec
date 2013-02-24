@@ -16,11 +16,7 @@ Gem::Specification.new do |gem|
   gem.test_files       = `git ls-files -- spec`.split("\n")
   gem.extra_rdoc_files = %w[TODO]
 
-  gem.add_runtime_dependency('backports',  '~> 2.6.1')
-  gem.add_runtime_dependency('mongo',      '~> 1.6.4')
+  gem.add_runtime_dependency('backports',  '~> 2.8.2')
+  gem.add_runtime_dependency('mongo',      '~> 1.8.2')
   gem.add_runtime_dependency('veritas',    '~> 0.0.7')
-
-  gem.add_development_dependency('rake',        '~> 0.9.2')
-  gem.add_development_dependency('rspec',       '~> 1.3.2')
-  gem.add_development_dependency('guard-rspec', '~> 0.7.0')
 end
