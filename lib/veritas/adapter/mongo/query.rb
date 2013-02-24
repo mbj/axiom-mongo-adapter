@@ -3,7 +3,7 @@ module Veritas
     class Mongo
       # a query in mongo adapter
       class Query
-        include Enumerable, Immutable
+        include Enumerable, Adamantium::Flat
 
         # Enumerate tuples
         #

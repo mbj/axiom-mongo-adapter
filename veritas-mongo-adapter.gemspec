@@ -16,7 +16,11 @@ Gem::Specification.new do |gem|
   gem.test_files       = `git ls-files -- spec`.split("\n")
   gem.extra_rdoc_files = %w[TODO]
 
-  gem.add_runtime_dependency('backports',  '~> 2.8.2')
-  gem.add_runtime_dependency('mongo',      '~> 1.8.2')
-  gem.add_runtime_dependency('veritas',    '~> 0.0.7')
+  gem.add_dependency('mongo',         '~> 1.8.2')
+  gem.add_dependency('veritas',       '~> 0.0.7')
+  gem.add_dependency('adamantium',    '~> 0.0.6')
+  gem.add_dependency('equalizer',     '~> 0.0.4')
+  gem.add_dependency('abstract_type', '~> 0.0.4')
+  gem.add_dependency('composition',   '~> 0.0.1')
+  gem.add_dependency('null_logger',   '~> 0.0.1')
 end

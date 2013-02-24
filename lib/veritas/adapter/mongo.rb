@@ -8,7 +8,7 @@ module Veritas
       # Error raised when query on unsupported algebra is created
       class UnsupportedAlgebraError < StandardError; end
 
-      include Immutable
+      include Adamantium::Flat
 
       # Return mongo connection
       #

@@ -3,7 +3,7 @@ module Veritas
     class Mongo
       # Mongo visitor for veritas relations
       class Visitor
-        include Immutable
+        include Adamantium::Flat
 
         # Return query
         #

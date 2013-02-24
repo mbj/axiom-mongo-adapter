@@ -3,7 +3,7 @@ module Veritas
     class Mongo
       # A container for registring operations
       class Operations
-        include Immutable
+        include Adamantium::Flat
 
         # Lookup operation based on visitable object
         #
