@@ -2,3 +2,5 @@
 /coverage
 /tmp
 /.rbx
+/vendor
+/.bundle
