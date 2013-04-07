@@ -5,79 +5,40 @@ require 'spec_helper'
 describe Adapter::Mongo::Gateway, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
-  let(:header)   { mock('Header')                         }
-  let(:reader)   { mock('Reader')                         }
-  let(:tuple)    { mock('Tuple')                          }
-  let(:adapter)  { mock('Adapter')                        }
-  let(:relation) { mock('Relation')                       }
-  let!(:object)  { described_class.new(adapter, relation) }
-  let(:yields)   { []                                     }
+  let(:header)   { Relation::Header.coerce([[:id, Integer]]) }
+  let(:reader)   { mock('Reader')                            }
+  let(:tuple)    { Tuple.coerce(header, [1])                 }
+  let(:adapter)  { mock('Adapter')                           }
+  let!(:object)  { described_class.new(adapter, relation)    }
+  let(:yields)   { []                                        }
 
   context 'with an unmaterialized relation' do
-    let(:wrapper) { stub }
+    let(:relation) { Relation::Base.new('name', header) }
+    let(:is_materialized) { false }
 
     before do
-      adapter.stub!(:read).and_return(reader)
-
-      relation.stub!(:header).and_return(header)
-      relation.stub!(:materialized?).and_return(false)
-      relation.stub!(:each).and_return(relation)
-
-      wrapper.stub!(:each).and_yield(tuple)
-      Relation.stub!(:new).and_return(wrapper)
+      adapter.stub(:read => [tuple])
     end
 
     it_should_behave_like 'an #each method'
 
     it 'yields each tuple' do
-      expect { subject }.to change { yields.dup }.
-        from([]).
-        to([ tuple ])
+      expect { subject }.to change { yields.dup }.from([]).to([ tuple ])
     end
 
     it 'passes in the relation to the adapter reader' do
       adapter.should_receive(:read).with(relation)
       subject
     end
-
-    it 'passes in the relation header and reader to the wrapper constructor' do
-      Relation.should_receive(:new).with(header, reader)
-      subject
-    end
   end
 
   context 'with a materialized relation' do
-    before do
-      relation.stub!(:materialized?).and_return(true)
-
-      # I do not know a better way to mock this behaviour out and
-      # I'm pretty sure that rspec does not provide Enumerator helpers
-      relation.stub!(:each) do |*args|
-        if args.empty?
-          relation.to_enum
-        else
-          args.first.call(tuple)
-          relation
-        end
-      end
-    end
+    let(:relation) { Relation.new(header, [ tuple ]) }
 
     it_should_behave_like 'an #each method'
 
     it 'yields each tuple' do
-      expect { subject }.to change { yields.dup }.
-        from([]).
-        to([ tuple ])
-    end
-
-    it 'does not create a reader' do
-      adapter.should_not_receive(:read)
-      subject
-    end
-
-    it 'does not create a wrapper' do
-      Relation.should_not_receive(:new)
-      subject
+      expect { subject }.to change { yields.dup }.from([]).to([ tuple ])
     end
   end
 end
