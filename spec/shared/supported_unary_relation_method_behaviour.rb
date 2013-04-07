@@ -30,7 +30,7 @@ shared_examples_for 'a supported unary relation method' do
 
     it 'forwards the block to relation' do
       if block
-        relation.stub!(operation) { |proc| proc.should equal(block) }
+        relation.stub(operation) { |&arg_block| arg_block.should equal(block) }
       end
       subject
     end
