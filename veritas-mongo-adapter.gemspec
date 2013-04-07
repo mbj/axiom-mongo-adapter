@@ -1,10 +1,8 @@
 # -*- encoding: utf-8 -*-
 
-require File.expand_path('../lib/veritas/adapter/mongo/version.rb', __FILE__)
-
 Gem::Specification.new do |gem|
   gem.name        = 'veritas-mongo-adapter'
-  gem.version     = Veritas::Adapter::Mongo::VERSION.dup
+  gem.version     = '0.0.1'
   gem.authors     = [ 'Markus Schirp' ]
   gem.email       = [ 'mbj@seonic.net' ]
   gem.description = 'Mongodb adapter for veritas'
