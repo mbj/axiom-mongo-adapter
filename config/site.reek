@@ -10,7 +10,7 @@ UncommunicativeParameterName:
 LargeClass:
   max_methods: 10
   exclude:
-  - "Veritas::Adapter::Mongo::Visitor" # 4 ivars
+  - "Axiom::Adapter::Mongo::Visitor" # 4 ivars
   enabled: true
   max_instance_variables: 3
 UncommunicativeMethodName:

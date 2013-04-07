@@ -1,7 +1,7 @@
-module Veritas
+module Axiom
   module Adapter
     class Mongo
-      # Mongo visitor for veritas relations
+      # Mongo visitor for axiom relations
       class Visitor
         include Adamantium::Flat
 
@@ -61,11 +61,11 @@ module Veritas
         end
 
         TABLE = Operations.new(
-          Veritas::Relation::Base              => :visit_base_relation,
-          Veritas::Relation::Operation::Order  => :visit_order_operation,
-          Veritas::Relation::Operation::Limit  => :visit_limit_operation,
-          Veritas::Relation::Operation::Offset => :visit_offset_operation,
-          Veritas::Algebra::Restriction        => :visit_restriction
+          Axiom::Relation::Base              => :visit_base_relation,
+          Axiom::Relation::Operation::Order  => :visit_order_operation,
+          Axiom::Relation::Operation::Limit  => :visit_limit_operation,
+          Axiom::Relation::Operation::Offset => :visit_offset_operation,
+          Axiom::Algebra::Restriction        => :visit_restriction
         )
 
         # Dispatch relation
@@ -115,7 +115,7 @@ module Veritas
         # Assign component for the first time
         #
         # @param [Symbol] ivar_name
-        # @param [Veritas::Relation::Operation] operation
+        # @param [Axiom::Relation::Operation] operation
         #
         # @return [self]
         #

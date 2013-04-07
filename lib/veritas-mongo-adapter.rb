@@ -1,1 +1,0 @@
-require 'veritas/adapter/mongo'

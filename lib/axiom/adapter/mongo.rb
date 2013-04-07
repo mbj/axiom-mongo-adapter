@@ -1,7 +1,7 @@
-require 'veritas'
+require 'axiom'
 require 'mongo'
 
-module Veritas
+module Axiom
   module Adapter
     # An adapter for mongodb
     class Mongo
@@ -56,9 +56,9 @@ module Veritas
   end
 end
 
-require 'veritas/adapter/mongo/operations'
-require 'veritas/adapter/mongo/visitor'
-require 'veritas/adapter/mongo/function'
-require 'veritas/adapter/mongo/literal'
-require 'veritas/adapter/mongo/gateway'
-require 'veritas/adapter/mongo/query'
+require 'axiom/adapter/mongo/operations'
+require 'axiom/adapter/mongo/visitor'
+require 'axiom/adapter/mongo/function'
+require 'axiom/adapter/mongo/literal'
+require 'axiom/adapter/mongo/gateway'
+require 'axiom/adapter/mongo/query'

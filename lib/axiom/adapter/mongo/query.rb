@@ -1,4 +1,4 @@
-module Veritas
+module Axiom
   module Adapter
     class Mongo
       # a query in mongo adapter

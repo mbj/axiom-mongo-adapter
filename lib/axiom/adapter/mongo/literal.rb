@@ -1,4 +1,4 @@
-module Veritas
+module Axiom
   module Adapter
     class Mongo
       # Component to check for valid bson literals
