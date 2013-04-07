@@ -1,5 +1,5 @@
-before_install:
-  - gem install bundler
+services:
+  - mongodb
 language: ruby
 script: 'bundle exec rake ci'
 rvm:
