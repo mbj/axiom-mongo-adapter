@@ -1,4 +1,4 @@
-module Veritas
+module Axiom
   module Adapter
     class Mongo
       # A container for registring operations

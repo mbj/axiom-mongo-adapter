@@ -1,21 +1,21 @@
-module Veritas
+module Axiom
   module Adapter
     class Mongo
-      # Module to transform veritas functions into mongo literals
+      # Module to transform axiom functions into mongo literals
       module Function
 
         FUNCTIONS = Operations.new(
-          Veritas::Function::Predicate::Equality             => :equality_predicate,
-          Veritas::Function::Predicate::Inequality           => :inequality_predicate,
-          Veritas::Function::Predicate::Inclusion            => :inclusion_predicate,
-          Veritas::Function::Predicate::Exclusion            => :exclusion_predicate,
-          Veritas::Function::Predicate::GreaterThan          => :greater_than_predicate,
-          Veritas::Function::Predicate::GreaterThanOrEqualTo => :greater_than_or_equal_to_predicate,
-          Veritas::Function::Predicate::LessThan             => :less_than_predicate,
-          Veritas::Function::Predicate::LessThanOrEqualTo    => :less_than_or_equal_to_predicate,
-          Veritas::Function::Connective::Disjunction         => :disjunction,
-          Veritas::Function::Connective::Conjunction         => :conjunction,
-          Veritas::Function::Connective::Negation            => :negation
+          Axiom::Function::Predicate::Equality             => :equality_predicate,
+          Axiom::Function::Predicate::Inequality           => :inequality_predicate,
+          Axiom::Function::Predicate::Inclusion            => :inclusion_predicate,
+          Axiom::Function::Predicate::Exclusion            => :exclusion_predicate,
+          Axiom::Function::Predicate::GreaterThan          => :greater_than_predicate,
+          Axiom::Function::Predicate::GreaterThanOrEqualTo => :greater_than_or_equal_to_predicate,
+          Axiom::Function::Predicate::LessThan             => :less_than_predicate,
+          Axiom::Function::Predicate::LessThanOrEqualTo    => :less_than_or_equal_to_predicate,
+          Axiom::Function::Connective::Disjunction         => :disjunction,
+          Axiom::Function::Connective::Conjunction         => :conjunction,
+          Axiom::Function::Connective::Negation            => :negation
         )
 
         # Create function literal
