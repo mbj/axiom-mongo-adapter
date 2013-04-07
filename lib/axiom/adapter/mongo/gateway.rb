@@ -1,10 +1,10 @@
 # encoding: utf-8
 
-module Veritas
+module Axiom
   module Adapter
     class Mongo
       # A relation backed by mongo adapter
-      class Gateway < ::Veritas::Relation
+      class Gateway < ::Axiom::Relation
 
         DECORATED_CLASS = superclass
 
@@ -137,4 +137,4 @@ module Veritas
       end
     end # class Gateway
   end # class Relation
-end # module Veritas
+end # module Axiom

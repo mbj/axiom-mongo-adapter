@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe Veritas::Adapter::Mongo::Literal, '#integer' do
+describe Axiom::Adapter::Mongo::Literal, '#integer' do
   subject { object.integer(value) }
 
-  let(:object) { Veritas::Adapter::Mongo::Literal }
+  let(:object) { Axiom::Adapter::Mongo::Literal }
 
   context 'when value is a fixnum in int32 range' do
     let(:value) { 10 }

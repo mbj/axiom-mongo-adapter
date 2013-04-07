@@ -1,11 +1,11 @@
-veritas-mongo-adapter
+axiom-mongo-adapter
 =====================
 
-[![Build Status](https://secure.travis-ci.org/mbj/veritas-mongo-adapter.png?branch=master)](http://travis-ci.org/mbj/veritas-mongo-adapter)
-[![Dependency Status](https://gemnasium.com/mbj/veritas-mongo-adapter.png)](https://gemnasium.com/mbj/veritas-mongo-adapter)
-[![Code Climate](https://codeclimate.com/github/mbj/veritas-mongo-adapter.png)](https://codeclimate.com/github/mbj/veritas-mongo-adapter)
+[![Build Status](https://secure.travis-ci.org/mbj/axiom-mongo-adapter.png?branch=master)](http://travis-ci.org/mbj/axiom-mongo-adapter)
+[![Dependency Status](https://gemnasium.com/mbj/axiom-mongo-adapter.png)](https://gemnasium.com/mbj/axiom-mongo-adapter)
+[![Code Climate](https://codeclimate.com/github/mbj/axiom-mongo-adapter.png)](https://codeclimate.com/github/mbj/axiom-mongo-adapter)
 
-This is an [mongodb](http://mongodb.org) adapter for [veritas](http://github.com/dkubb/veritas).
+This is an [mongodb](http://mongodb.org) adapter for [axiom](http://github.com/dkubb/axiom).
 
 The adapter is in development.
 
@@ -17,8 +17,8 @@ Installation
 In your **Gemfile**
 
 ``` ruby
-gem 'veritas',               :git => 'https://github.com/dkubb/veritas'
-gem 'veritas-mongo-adapter', :git => 'https://github.com/mbj/veritas-mongo-adapter'
+gem 'axiom',               :git => 'https://github.com/dkubb/axiom'
+gem 'axiom-mongo-adapter', :git => 'https://github.com/mbj/axiom-mongo-adapter'
 ```
 
 Examples
