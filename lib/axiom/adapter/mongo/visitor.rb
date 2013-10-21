@@ -12,6 +12,7 @@ module Axiom
         # @api private
         #
         attr_reader :query
+        attr_reader :method_name
 
         # Return collection name
         #
@@ -55,6 +56,7 @@ module Axiom
         # @api private
         #
         def initialize(relation)
+          relation = relation.send(:relation) if relation.is_a? Gateway
           dispatch(relation)
           @query ||= {}
           @sort  ||= []
@@ -65,8 +67,18 @@ module Axiom
           Axiom::Relation::Operation::Order  => :visit_order_operation,
           Axiom::Relation::Operation::Limit  => :visit_limit_operation,
           Axiom::Relation::Operation::Offset => :visit_offset_operation,
+          Axiom::Relation::Operation::Insertion => :visit_insert_operation,
           Axiom::Algebra::Restriction        => :visit_restriction
         )
+
+        def visit_insert_operation(insertion)
+          assign_first_time(:@query, insertion) do
+            #TODO need remove it to Axiom::Relation class, in method to_hash
+            # relation.to_hash like
+            @method_name = :insert
+            insertion.right.to_a.inject([]) {|res, tuple| res << Hash[tuple.data.map { |attribute, value| [attribute.name, value] }]}
+          end
+        end
 
         # Dispatch relation
         #
@@ -128,7 +140,8 @@ module Axiom
 
           instance_variable_set(ivar_name, yield)
 
-          dispatch(operation.operand)
+          dispatch(operation.operand) if operation.respond_to?(:operand)
+          dispatch(operation.left) if operation.respond_to?(:left)
 
           self
         end

@@ -25,6 +25,10 @@ module Axiom
           self
         end
 
+        def execute
+          @collection.method(@visitor.method_name).call(@visitor.query)
+        end
+        
       private
 
         # Initialize a mongo query
