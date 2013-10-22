@@ -31,6 +31,11 @@ module Axiom
       #
       # @api private
       #
+
+      def execute(relation)
+        Query.new(@database, relation).execute
+      end
+
       def read(relation, &block)
         return to_enum(__method__, relation) unless block_given?
 
